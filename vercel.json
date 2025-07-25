@@ -1,18 +1,15 @@
 {
   "version": 2,
-  "framework": null,
-  "functions": {
-    "api/index.js": {
-      "maxDuration": 10
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/api/translate",
-      "dest": "/api/index.js"
+      "src": "api/index.js",
+      "use": "@vercel/node"
     }
   ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
+  ]
 }
