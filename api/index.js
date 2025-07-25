@@ -72,7 +72,7 @@ app.post('/translate', async (req, res) => {
 
     // const result = await translate(text, fromLang, toLang);
     // res.json({ translation: result.translation });
-    const googleText = await XXXX('Привет, мир! Как дела?', { to: 'en' });
+    const googleText = await XXXX(text , {from:'ug', to: 'en' });
     res.json({ translation: googleText.text });
 
   } catch (err) {
