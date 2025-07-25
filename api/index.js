@@ -61,6 +61,13 @@ app.use(express.static(__dirname));
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, '../public')));
 
+function fix_lang4g(lang_code){
+  if (lang_code == 'zh-Hans') return 'zh-CN'; 
+  else if (lang_code == 'zh-Hant') return 'zh-TW';
+  else if (lang_code == 'pt-PT') return 'pt';
+  else if (lang_code == 'tgk') return 'tg';
+  else return lang_code
+}
 // Route to handle translation
 app.post('/translate', async (req, res) => {
   try {
@@ -72,7 +79,7 @@ app.post('/translate', async (req, res) => {
 
     // const result = await translate(text, fromLang, toLang);
     // res.json({ translation: result.translation });
-    const googleText = await XXXX(text , {from:'ug', to: 'en' });
+    const googleText = await XXXX(text , {from:fix_lang4g(fromLang), to:fix_lang4g(toLang) });
     res.json({ translation: googleText.text });
 
   } catch (err) {
